@@ -1,0 +1,20 @@
+﻿@using LoginSolo.Dtos;
+@model LoginDto
+
+<form method="post">
+	<input type="text" asp-for="Username" placeholder="Kullanıcı Adınız" required="">
+	<input type="password" asp-for="Password" placeholder="Şifreniz" required="">
+	<br /><br />
+	<ul class="agileinfotickwthree">
+		<li>
+			<input type="checkbox" id="brand1" value="">
+			<label for="brand1"><span></span>Beni Hatırla</label>
+			<a href="/Register/Index/">Bir Hesabınız Yok mu?</a>
+		</li>
+	</ul>
+	<div class="aitssendbuttonw3ls">
+		<input type="submit" value="Giriş Yap">
+		<p> Ana Sayfaya Dön <span>→</span> <a class="w3_play_icon1" href="#small-dialog1"> Easy Cash</a></p>
+		<div class="clear"></div>
+	</div>
+</form>

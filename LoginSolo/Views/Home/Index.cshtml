@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    
+    @if (ViewBag.CurrentUser == null)
+    {
+        <h1 class="display-4">Welcome</h1>
+        <div>
+            <p>Please login to search and add cities to the view.</p>
+        </div>
+    }
+    else
+    {
+        <div>
+            <p>@ViewBag.CurrentUser.Cities</p>
+        </div>
+        <!-- Add a form with a text field and a button -->
+        <form id="addCityForm">
+            <label for="cityName">City Name:</label>
+            <input type="text" id="cityName" name="cityName" required>
+            <button type="button" onclick="addCity()">Add City</button>
+            <button type="button" onclick="clearCities()">Clear Cities</button>
+        </form>
+    }
+
+</div>
+
+@section scripts {
+    <script>
+        function addCity() {
+            var cityName = document.getElementById("cityName").value;
+
+            // Make an AJAX request to the AddCityToUser action
+            $.ajax({
+                url: '@Url.Action("AddCityToUser", "Home")',
+                type: 'POST',
+                data: { cityName: cityName },
+                success: function (result) {
+                    if (result === 0) {
+                        alert('City added successfully.');
+                        reloadPage();
+                    } else {
+                        alert('Error adding city.');
+                    }
+                },
+                error: function () {
+                    alert('Error adding city.');
+                }
+            });
+        }
+
+        function clearCities() {
+            // Make an AJAX request to the ClearUserCities action
+            $.ajax({
+                url: '@Url.Action("ClearUserCities", "Home")',
+                type: 'POST',
+                success: function (result) {
+                    if (result === 0) {
+                        alert('Cities cleared successfully.');
+                        reloadPage();
+                    } else {
+                        alert('Error clearing cities.');
+                    }
+                },
+                error: function () {
+                    alert('Error clearing cities.');
+                }
+            });
+        }
+
+        function reloadPage() {
+            // Reload the page
+            location.reload();
+        }
+    </script>
+}
