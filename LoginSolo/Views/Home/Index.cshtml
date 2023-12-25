@@ -22,9 +22,42 @@
             flex: 0 0 auto;
             margin-right: 20px; /* Adjust as needed */
         }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        input[type="datetime"],
+        input[type="email"],
+        input[type="number"],
+        input[type="search"],
+        input[type="tel"],
+        input[type="time"],
+        input[type="url"],
+        textarea,
+        select {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            font-size: 16px;
+            height: auto;
+            margin: 0;
+            outline: 0;
+            padding: 15px;
+            width: 100%;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        button[type="button"] {
+            background-color: rgba(0,0,0,0.5);
+            color: rgba(255,255,255,0.8);
+            border: none;
+            border-radius: 10px;
+        }
     </style>
 </head>
-
+<body>
 <div class="text-center">
     
     @if (ViewBag.CurrentUser == null)
@@ -36,18 +69,22 @@
     }
     else
     {
-        <div>
-            <p>@ViewBag.CurrentUser.Cities</p>
-        </div>
         <!-- Add a form with a text field and a button -->
-        <form id="addCityForm">
-            <label for="cityName">City Name:</label>
-            <input type="text" id="cityName" name="cityName" required>
-            <button type="button" onclick="addCity()">Add City</button>
-            <button type="button" onclick="clearCities()">Clear Cities</button>
+        <form id="addCityForm" style="padding-bottom: 25px;">
+            <div style="height:50px; width:1000px; display: grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: 1fr; grid-column-gap: 0px; grid-row-gap: 0px;">
+                <div style="grid-area: 1 / 1 / 2 / 6;">
+                    <input type="text" id="cityName" name="cityName" placeholder="Search for places" style="height:50px; width:700px;" required>
+                </div>
+                <div style="grid-area: 1 / 6 / 2 / 7; ">
+                    <button type="button" onclick="addCity()" style="height:50px; width:130px;">Add City</button>
+                </div>
+                <div style="grid-area: 1 / 7 / 2 / 8; ">
+                    <button type="button" onclick="clearCities()" style="height:50px; width:130px;">Clear Cities</button>
+                </div>
+            </div>
         </form>
 
-        <div class="scroll-container">
+        <div class="scroll-container" sytle="padding-top: 25px;">
             <ul>
                 @foreach (City city in Model)
                 {
@@ -60,7 +97,7 @@
     }
 
 </div>
-
+</body>
 
 
 @section scripts {
@@ -110,6 +147,5 @@
             // Reload the page
             location.reload();
         }
-
     </script>
 }

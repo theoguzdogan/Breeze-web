@@ -39,13 +39,14 @@
 
         .astro {
             grid-area: 5 / 1 / 6 / 7;
-            background-color: rgba(0, 0, 0, 0.3);
+            color: rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .hour-forecast {
+            border-radius: 5px;
             grid-area: 6 / 1 / 7 / 7;
             background-color: rgba(0, 0, 0, 0.3);
             display: grid;
@@ -54,21 +55,25 @@
         }
 
         .feelslike {
+            border-radius: 5px;
             grid-area: 7 / 1 / 8 / 4;
             background-color: rgba(0, 0, 0, 0.3);
         }
 
         .humidity {
+            border-radius: 5px;
             grid-area: 7 / 4 / 8 / 7;
             background-color: rgba(0, 0, 0, 0.3);
         }
 
         .precipitation {
+            border-radius: 5px;
             grid-area: 8 / 1 / 9 / 4;
             background-color: rgba(0, 0, 0, 0.3);
         }
 
         .min-max {
+            border-radius: 5px;
             grid-area: 8 / 4 / 9 / 7;
             background-color: rgba(0, 0, 0, 0.3);
         }
@@ -92,9 +97,11 @@
             <div style="text-align:center;">
                 <p>GD: @Model.sunrise</p>
             </div>
+            &ensp;
             <div style="display: flex; justify-content: center; align-items: center;">
                 <img src="/assets/astro-icons.png" alt="astro-icons.png" width="112" height="15">
             </div >
+            &ensp;
             <div style="display: flex; justify-content: center; align-items: center;">
                 <p>GB: @Model.sunset</p>
             </div> 
@@ -130,7 +137,9 @@
 
         <div class="feelslike">
             <div style="display: flex; justify-content: left; align-items:start;">
+                &ensp;
                 <img src="/assets/feelslike.png" height="15" width="12">
+                &ensp;
                 <p>Hissedilen</p>
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
@@ -140,7 +149,9 @@
 
         <div class="humidity">
             <div style="display: flex; justify-content: left; align-items:start;">
+                &ensp;
                 <img src="/assets/humidity.png" height="15" width="12">
+                &ensp;
                 <p>Nem</p>
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
@@ -150,7 +161,9 @@
 
         <div class="precipitation">
             <div style="display: flex; justify-content: left; align-items:start;">
+                &ensp;
                 <img src="/assets/precipitation.png" height="15" width="12">
+                &ensp;
                 <p>Yağış</p>
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
@@ -161,8 +174,11 @@
         <div class="min-max">
             <div style="display: flex; justify-content: center; align-items:center;">
                 <p>Y: @Model.max_c°C</p>
+                &nbsp
                 <img src="/assets/max.png" height="12" width="17">
+                &ensp;
                 <img src="/assets/min.png" height="12" width="17">
+                &nbsp
                 <p>D: @Model.min_c°C</p>
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
