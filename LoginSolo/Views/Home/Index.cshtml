@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<City>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -26,6 +28,14 @@
     }
 
 </div>
+
+@foreach (City city in Model)
+{
+    <div>
+        
+        @Html.PartialAsync("_WeatherWidget", @city).Result
+    </div>
+}
 
 @section scripts {
     <script>
@@ -74,5 +84,6 @@
             // Reload the page
             location.reload();
         }
+
     </script>
 }
