@@ -4,6 +4,27 @@
     ViewData["Title"] = "Home Page";
 }
 
+<head>
+    <style>
+        .scroll-container {
+            overflow-x: scroll;
+            white-space: nowrap;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .scroll-item {
+            flex: 0 0 auto;
+            margin-right: 20px; /* Adjust as needed */
+        }
+    </style>
+</head>
+
 <div class="text-center">
     
     @if (ViewBag.CurrentUser == null)
@@ -25,17 +46,22 @@
             <button type="button" onclick="addCity()">Add City</button>
             <button type="button" onclick="clearCities()">Clear Cities</button>
         </form>
+
+        <div class="scroll-container">
+            <ul>
+                @foreach (City city in Model)
+                {
+                    <li class="scroll-item">
+                        @Html.PartialAsync("_WeatherWidget", @city).Result
+                    </li>
+                }
+            </ul>
+        </div>
     }
 
 </div>
 
-@foreach (City city in Model)
-{
-    <div>
-        
-        @Html.PartialAsync("_WeatherWidget", @city).Result
-    </div>
-}
+
 
 @section scripts {
     <script>
