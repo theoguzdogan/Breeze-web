@@ -5,7 +5,10 @@
         public string? name;
 
         public string? current_date;
-        public string? current_hour;
+        public int? current_hour;
+        public string? localtime;
+        public string? region;
+        public string? country;
 
         public string? sunrise;
         public string? sunset;
@@ -25,16 +28,31 @@
         //public string? avg_f;
         public string? max_c;
         //public string? max_f;
+
         public string? hour1_c;
         //public string? hour1_f;
+        public string? hour1_condition_icon;
+        public string? hour1_condition_text;
+
         public string? hour2_c;
         //public string? hour2_f;
+        public string? hour2_condition_icon;
+        public string? hour2_condition_text;
+
         public string? hour3_c;
         //public string? hour3_f;
+        public string? hour3_condition_icon;
+        public string? hour3_condition_text;
+
         public string? hour4_c;
         //public string? hour4_f;
+        public string? hour4_condition_icon;
+        public string? hour4_condition_text;
+
         public string? hour5_c;
         //public string? hour5_f;
+        public string? hour5_condition_icon;
+        public string? hour5_condition_text;
 
         public string? day1_weekday;
         public string? day1_min_c;

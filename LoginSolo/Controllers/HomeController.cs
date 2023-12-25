@@ -42,6 +42,9 @@ namespace LoginSolo.Controllers
                             citiesList.Add(new City()
                             {
                                 name = weatherResponse.GetProperty("location").GetProperty("name").GetString(),
+                                region = weatherResponse.GetProperty("location").GetProperty("region").GetString(),
+                                country = weatherResponse.GetProperty("location").GetProperty("country").GetString(),
+                                localtime = weatherResponse.GetProperty("location").GetProperty("localtime").GetString(),
                                 temp_c = weatherResponse.GetProperty("current").GetProperty("temp_c").GetDouble().ToString(),
                                 feelslike_c = weatherResponse.GetProperty("current").GetProperty("feelslike_c").GetDouble().ToString(),
                                 humidity = weatherResponse.GetProperty("current").GetProperty("humidity").GetDouble().ToString(),
@@ -52,12 +55,27 @@ namespace LoginSolo.Controllers
                                 avg_c = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("day").GetProperty("avgtemp_c").ToString(),
                                 max_c = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("day").GetProperty("maxtemp_c").ToString(),
                                 current_date = currentDate,
-                                current_hour = currentHour.ToString(),
+                                current_hour = currentHour,
                                 hour1_c = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 1].GetProperty("temp_c").ToString(),
+                                hour1_condition_icon = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 1].GetProperty("condition").GetProperty("icon").ToString(),
+                                hour1_condition_text = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 1].GetProperty("condition").GetProperty("text").ToString(),
+                                
                                 hour2_c = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 2].GetProperty("temp_c").ToString(),
+                                hour2_condition_icon = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 2].GetProperty("condition").GetProperty("icon").ToString(),
+                                hour2_condition_text = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 2].GetProperty("condition").GetProperty("text").ToString(),
+
                                 hour3_c = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 3].GetProperty("temp_c").ToString(),
+                                hour3_condition_icon = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 3].GetProperty("condition").GetProperty("icon").ToString(),
+                                hour3_condition_text = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 3].GetProperty("condition").GetProperty("text").ToString(),
+
                                 hour4_c = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 4].GetProperty("temp_c").ToString(),
+                                hour4_condition_icon = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 4].GetProperty("condition").GetProperty("icon").ToString(),
+                                hour4_condition_text = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 4].GetProperty("condition").GetProperty("text").ToString(),
+
                                 hour5_c = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 5].GetProperty("temp_c").ToString(),
+                                hour5_condition_icon = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 5].GetProperty("condition").GetProperty("icon").ToString(),
+                                hour5_condition_text = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("hour")[currentHour + 5].GetProperty("condition").GetProperty("text").ToString(),
+
                                 sunrise = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("astro").GetProperty("sunrise").GetString(),
                                 sunset = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[0].GetProperty("astro").GetProperty("sunset").GetString(),
 
@@ -111,7 +129,7 @@ namespace LoginSolo.Controllers
                                 day7_cond_text = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[7].GetProperty("day").GetProperty("condition").GetProperty("text").GetString(),
                                 day7_cond_icon = weatherResponse.GetProperty("forecast").GetProperty("forecastday")[7].GetProperty("day").GetProperty("condition").GetProperty("icon").GetString(),
 
-                            }) ;
+                            });
                             
                         }
                         catch

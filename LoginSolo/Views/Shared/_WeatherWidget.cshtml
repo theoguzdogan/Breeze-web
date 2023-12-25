@@ -1,22 +1,201 @@
 ﻿@model City;
 
-<div>
-    <p>City: @Model.name</p>
-    <p>Degree: @Model.temp_c</p>
-    <p>Feels Like: @Model.feelslike_c</p>
-    <p>Humidity: @Model.humidity</p>
-    <p>Precipitation: @Model.precipitation_mm</p>
-    <p>Condition Text: @Model.condition_text</p>
-    <p>Condition Icon: @Model.condition_icon</p>
-    <p>Min Temp: @Model.min_c</p>
-    <p>Avg Temp: @Model.avg_c</p>
-    <p>Max Temp: @Model.max_c</p>
-    <p>Current Day: @Model.current_date</p>
-    <p>Current Hour: @Model.current_hour</p>
-    <p>NextHour1 Temp: @Model.hour1_c</p>
-    <p>NextHour2 Temp: @Model.hour2_c</p>
-    <p>NextHour3 Temp: @Model.hour3_c</p>
-    <p>NextHour4 Temp: @Model.hour4_c</p>
-    <p>NextHour5 Temp: @Model.hour5_c</p>
-    <p>NextDay1 Min: @Model.day1_min_c</p>
+<head>
+    <style>
+        <!--
+        .weather-widget {
+            color: white;
+        }
+        .weather-widget .content {
+            color: red;
+        }
+        -->
+        .weather-widget-root {
+            background-color: rgba(255, 255, 255, 0.3);
+            width: 415px;
+            height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .weather-widget {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(3, 1fr) repeat(2, 0.5fr) repeat(3, 1fr);
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+            width: 395px;
+            height: 780px;
+            
+        }
+
+        .main-disp {
+            grid-area: 1 / 1 / 5 / 7;
+            background-image: linear-gradient(#2997FC, #A8D5FF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .astro {
+            grid-area: 5 / 1 / 6 / 7;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hour-forecast {
+            grid-area: 6 / 1 / 7 / 7;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: 1fr;
+        }
+
+        .feelslike {
+            grid-area: 7 / 1 / 8 / 4;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .humidity {
+            grid-area: 7 / 4 / 8 / 7;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .precipitation {
+            grid-area: 8 / 1 / 9 / 4;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .min-max {
+            grid-area: 8 / 4 / 9 / 7;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<div class="weather-widget-root">
+    <div class="weather-widget">
+
+        <div class="main-disp">
+            <div style="text-align: center;">
+                <h1>@Model.name</h1>
+                <h5>@(Model.region), @Model.country</h5>
+                <img src="@Model.condition_icon" alt="@Model.condition_text" width="100" height="100">
+                <h2>@Model.temp_c°C</h2>
+                <h6>@Model.localtime</h6>
+            </div>
+        </div>
+
+        <div class="astro">
+            <div style="text-align:center;">
+                <p>GD: @Model.sunrise</p>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="/assets/astro-icons.png" alt="astro-icons.png" width="112" height="15">
+            </div >
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <p>GB: @Model.sunset</p>
+            </div> 
+        </div>
+
+        <div class="hour-forecast">
+            <div style="grid-area: 1 / 1 / 2 / 2; text-align:center;">
+                <p>@(Model.current_hour + 1)</p>
+                <img src="@Model.hour1_condition_icon" alt="@Model.hour1_condition_text" width="40" height="40">
+                <p>@Model.hour1_c°C</p>
+            </div>
+            <div style="grid-area: 1 / 2 / 2 / 3; text-align:center;">
+                <p>@(Model.current_hour + 2)</p>
+                <img src="@Model.hour2_condition_icon" alt="@Model.hour2_condition_text" width="40" height="40">
+                <p>@Model.hour2_c°C</p>
+            </div>
+            <div style="grid-area: 1 / 3 / 2 / 4; text-align:center;">
+                <p>@(Model.current_hour + 3)</p>
+                <img src="@Model.hour3_condition_icon" alt="@Model.hour3_condition_text" width="40" height="40">
+                <p>@Model.hour3_c°C</p>
+            </div>
+            <div style="grid-area: 1 / 4 / 2 / 5; text-align:center;">
+                <p>@(Model.current_hour + 4)</p>
+                <img src="@Model.hour4_condition_icon" alt="@Model.hour4_condition_text" width="40" height="40">
+                <p>@Model.hour4_c°C</p>
+            </div>
+            <div style="grid-area: 1 / 5 / 2 / 6; text-align:center;">
+                <p>@(Model.current_hour + 5)</p>
+                <img src="@Model.hour5_condition_icon" alt="@Model.hour5_condition_text" width="40" height="40">
+                <p>@Model.hour5_c°C</p>
+            </div>
+        </div>
+
+        <div class="feelslike">
+            <div style="display: flex; justify-content: left; align-items:start;">
+                <img src="/assets/feelslike.png" height="15" width="12">
+                <p>Hissedilen</p>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <h2>@Model.feelslike_c°C</h2>
+            </div>
+        </div>
+
+        <div class="humidity">
+            <div style="display: flex; justify-content: left; align-items:start;">
+                <img src="/assets/humidity.png" height="15" width="12">
+                <p>Nem</p>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <h2>@Model.humidity%</h2>
+            </div>
+        </div>
+
+        <div class="precipitation">
+            <div style="display: flex; justify-content: left; align-items:start;">
+                <img src="/assets/precipitation.png" height="15" width="12">
+                <p>Yağış</p>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <h2>@(Model.precipitation_mm)mm</h2>
+            </div>
+        </div>
+
+        <div class="min-max">
+            <div style="display: flex; justify-content: center; align-items:center;">
+                <p>Y: @Model.max_c°C</p>
+                <img src="/assets/max.png" height="12" width="17">
+                <img src="/assets/min.png" height="12" width="17">
+                <p>D: @Model.min_c°C</p>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <h3>@Model.condition_text</h3>
+            </div>
+        </div>
+
+    </div>
 </div>
+
+
+<!--
+<div class="weather-widget">
+    <p>City: @Model.name</p>
+    <div class="content">
+        <p>Degree: @Model.temp_c</p>
+        <p>Feels Like: @Model.feelslike_c</p>
+        <p>Humidity: @Model.humidity</p>
+        <p>Precipitation: @Model.precipitation_mm</p>
+        <p>Condition Text: @Model.condition_text</p>
+        <p>Condition Icon: @Model.condition_icon</p>
+        <p>Min Temp: @Model.min_c</p>
+        <p>Avg Temp: @Model.avg_c</p>
+        <p>Max Temp: @Model.max_c</p>
+        <p>Current Day: @Model.current_date</p>
+        <p>Current Hour: @Model.current_hour</p>
+        <p>NextHour1 Temp: @Model.hour1_c</p>
+        <p>NextHour2 Temp: @Model.hour2_c</p>
+        <p>NextHour3 Temp: @Model.hour3_c</p>
+        <p>NextHour4 Temp: @Model.hour4_c</p>
+        <p>NextHour5 Temp: @Model.hour5_c</p>
+        <p>NextDay1 Min: @Model.day1_min_c</p>
+    </div>
+    
+</div>
+-->
